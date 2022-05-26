@@ -10,10 +10,25 @@ XIAOHONGSHU_DATA_DIR = os.path.join(XIAOHONGSHU_DIR, "data")
 # xiaohongshu headers
 HEADERS = {
     "Accept": "application/json, text/plain, */*",
-    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36",
-    "Referer": "https://www.douyin.com/",
-    "Accept-Language": "zh-CN,zh;q=0.9",
     "Accept-Encoding": "gzip, deflate, br",
+    "Accept-Language": "en-US,en;q=0.9,zh-CN;q=0.8,zh;q=0.7",
+    "Referer": "https://www.douyin.com/",
+    "sec-ch-ua": '" Not A;Brand";v="99", "Chromium";v="101", "Google Chrome";v="101"',
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": '"macOS"',
+    "sec-fetch-dest": "empty",
+    "sec-fetch-mode": "cors",
+    "sec-fetch-site": "same-origin",
+    "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.64 Safari/537.36",
+}
+
+COOKIES = {
+    "extra_exp_ids": "recommend_comment_hide_exp1,recommend_comment_hide_v2_exp2,recommend_comment_hide_v3_origin,supervision_exp,supervision_v2_exp,commentshow_exp1,gif_clt1,ques_clt2",
+    "xhsTracker": "url=index&searchengine=google",
+    "smidV2": "202205231722121337f6caf923150a28e721735086788f00868cffac71a6580",
+    "timestamp2.sig": "0gpfZMhL6VSgZWXKTpqYJ5eUkEa0oCfr5aJEFLKZp6I",
+    "timestamp2": "165329772044499eda76d2f99f0f823e3d20ffbdfa663c42316d3ea0e987fac",
+    "xhsTrackerId": "e0e61121-3740-4c30-ccca-bfa70685d7a1",
 }
 
 TOPIC_FILE_LIST = [
@@ -24,15 +39,18 @@ TOPIC_FILE_LIST = [
 ]
 
 # xiaohognshu crawler url
-# xhs_topics = "https://www.xiaohongshu.com/web_api/sns/v3/page/notes?page_size={page_size}&sort=hot&page_id={page_id}&cursor={cursor}&sid="
 XHS_TOPIC_URL = "https://www.xiaohongshu.com/web_api/sns/v3/page/notes?page_size={page_size}&sort=hot&page_id={page_id}&cursor={cursor}&sid="
 
 # 爬虫任务总文件
-# result_all = "xhs_search_topic_result_all.txt"
 XHS_RESULT_ALL_FILE = "xhs_search_topic_result_all.txt"
 # 当日任务备份文件
-# today_backup_file = "today_backup.txt"
 TODAY_BACKUP_FILE = "today_backup.txt"
 # 当日去重后的任务文件
-# xhs_search_topic_result = "xhs_search_topic_result.txt"
 XHS_SEARCH_TOPIC_RESULT_FILE = "xhs_search_topic_result.txt"
+
+# 接口timeout时间
+TIMEOUT = 5
+# 每次请求的数据量
+PAGE_SIZE = 20
+# 每次请求之间的休眠
+REQ_SLEEP_TIME = 1

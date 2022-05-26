@@ -12,7 +12,8 @@ def read_xhs_topics_file(file_name):
             if i % 2 == 1:
                 topic_url = topic_line
             if i % 2 == 1:
-                topics.append((topic_name, topic_url))
+                topic_page_id = topic_url[topic_url.rfind("/") + 1 : topic_url.find("?")]
+                topics.append((topic_name, topic_page_id, topic_url))
     return topics
 
 
