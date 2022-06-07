@@ -9,15 +9,11 @@ import constant
 from xhs_topic import get_topic_list
 from logger import logger
 
-def http_download(url, save_file, proxies=None):
+def http_download(url, save_file, session=None):
     with open(save_file, "wb+") as save_file_fd:
-        header, cookies = constant.HEADERS, constant.COOKIES
-        r = requests.get(
+        r = session.get(
             url,
-            headers=header,
-            cookies=cookies,
-            # proxies=proxies,
-            # verify=False,
+            verify=False,
             timeout=constant.TIMEOUT
         )
         # logger.debug(r.status_code)
@@ -39,6 +35,12 @@ def xhs_topic_download(today_dir, xhs_search_topic_result):
         topics[topic_page_id] = {}
         topics[topic_page_id]["topic_name"] = topic_name
         topics[topic_page_id]["topic_url"] = topic_url
+
+    header, cookies = constant.HEADERS, constant.COOKIES
+    session = requests.Session()
+    session.headers.update(header)
+    session.headers.update({'referer': 'https://www.xiaohongshu.com/'})
+    session.cookies.update(cookies)
 
     with open(xhs_search_topic_result, "r") as topic_fd:
         for line_no, topic_line in enumerate(topic_fd):
@@ -68,11 +70,11 @@ def xhs_topic_download(today_dir, xhs_search_topic_result):
                 if item_type == "normal":
                     for i, image_url in enumerate(images_list):
                         save_file = os.path.join(topic_path, f"{item_id}-{i}.jpg")
-                        http_download(image_url, save_file)
+                        http_download(image_url, save_file, session)
                         time.sleep(0.2)
                 elif item_type == "video":
                     save_file = os.path.join(topic_path, f"{item_id}.mp4")
-                    http_download(video_url, save_file)
+                    http_download(video_url, save_file, session)
                     time.sleep(0.2)
                 else:
                     raise Exception(f"invalid topic type: {item_type}")

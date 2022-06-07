@@ -1,0 +1,2 @@
+0 1,9,12,15 * * * cd /home/handong/xhs_video_crawler/ && python3 xhs.py
+0 18 * * * cd /home/handong/xhs_video_crawler/ && python3 xhs_download.py
