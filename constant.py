@@ -36,6 +36,7 @@ TOPIC_FILE_LIST = [
     os.path.join(TOPIC_DIR, "xhs_topics_p0.txt"),
     os.path.join(TOPIC_DIR, "xhs_topics_p1.txt"),
     os.path.join(TOPIC_DIR, "xhs_topics_p2.txt"),
+    os.path.join(TOPIC_DIR, "xhs_topics_p3.txt"),
 ]
 
 # xiaohognshu crawler url
